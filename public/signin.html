@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+
+
+    <!--working name-->
+    <title>Art Prompt and Palette Generator</title>
+
+  </head>
+  <body>
+    <!--firebase stuff-->
+    <script src="/__/firebase/8.3.3/firebase-app.js"></script>
+    <script src="/__/firebase/8.3.3/firebase-auth.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCsjzeGbTVxJwMlO5qJkRiIO9xTB_sM3_k",
+            authDomain: "apcp-generator.firebaseapp.com",
+            databaseURL: "https://apcp-generator.firebaseio.com",
+            projectId: "apcp-generator"
+
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
+
+
+
+    <!--navigation bar at the top of the screen-->
+    <div id="topbar" class="topbar">
+      <ul class="navbar">
+        <li><a href ="index.html">Home</a></li>
+        <li><a href ="#">About</a></li>
+        <li><a href ="submit.html">Submit a Prompt</a></li>
+        <!--TODO: Figure out how to make one or the other appear-->
+        <li><a href ="#">Account</a></li>
+        <li><a class="active" href ="signin.html">Login</a></li>
+      </ul>
+    </div>
+
+    <div class="help">
+      <h2>Sign in or Make an Account!</h2>
+    </div>
+
+    <!--Login or Sign Up Form-->
+    <div class="loginform">
+        <form>
+          <label for="email">Email:</label>
+          <input type="email" id="email">
+          <br>
+          <label for="password">Password:</label>
+          <input type="password" id="password">
+          <br>
+          <br>
+          <button id="signup-btn">Sign Up</button>
+          <button id="login-btn">Login</button>
+        </form>
+    </div>
+
+
+    <!-- Initialize Firebase -->
+      <script src="/__/firebase/init.js"></script>
+
+    <!--firebase stuff-->
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.3/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.3.3/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-analytics.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>-->
+    
+  </body>
+</html>

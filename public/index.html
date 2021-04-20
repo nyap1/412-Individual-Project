@@ -10,19 +10,7 @@
     <!--working name-->
     <title>Art Prompt and Palette Generator</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.3.3/firebase-app.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script defer src="/__/firebase/8.3.3/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.3.3/firebase-performance.js"></script>
+
     <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
@@ -31,20 +19,31 @@
     
   </head>
   <body>
+    <!--firebase stuff-->
 
     <!--navigation bar at the top of the screen-->
     <div id="topbar" class="topbar">
       <ul class="navbar">
-        <li><a class = "active" href ="#index">Home</a></li>
+        <li><a class = "active" href ="index.html">Home</a></li>
         <li><a href ="#">About</a></li>
-        <li><a href ="#">Submit a Prompt</a></li>
+        <li><a href ="submit.html">Submit a Prompt</a></li>
         <!--TODO: Figure out how to make one or the other appear-->
-        <li><a href ="#">Account</a></li>
-        <li><a href ="#">Login</a></li>
+        <li class="logged-in"><a href ="#">Account</a></li>
+        <li class="logged-in"><a href="#">Logout</a></li>
+        <li class="logged-out"><a href ="signin.html">Login</a></li>
+        <li class="logged-out"><a href ="#">Sign Up</a></li>
       </ul>
     </div>
+    
+    <!--Sign up Modal-->
+    <div id="signup-modal" class="modal"></div>
 
-    <div class="help">
+
+
+
+
+    <!--Generator Information-->
+    <div class="tutorial">
       <h2>How to use the generator</h2>
 
 
@@ -52,6 +51,39 @@
 
 
     <!-- Initialize Firebase -->
-      <script src="/__/firebase/init.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <!--sticky navigation bar-->
+    <script>
+      window.onscroll = function() {stickyBar()};
+
+      // Get the navbar
+      var navbar = document.getElementById("navbar");
+
+      // Get the offset position of the navbar
+      var sticky = navbar.offsetTop;
+
+      // Add the sticky class to the navbar when it reaches the top
+      function stickyBar() {
+        if (window.pageYOffset >= sticky) {
+          navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky"); //removes sticky class when bar's no longer at the top
+          }
+        }
+    </script>
+
+    <!--firebase stuff-->
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.3.3/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.3.3/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.3.3/firebase-analytics.js"></script>
+
+
+
   </body>
 </html>
