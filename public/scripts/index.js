@@ -1,7 +1,8 @@
+
 var firebaseConfig = {
   apiKey: "AIzaSyCsjzeGbTVxJwMlO5qJkRiIO9xTB_sM3_k",
   authDomain: "apcp-generator.firebaseapp.com",
-  databaseURL: "https://acpc-generator.firebaseio.com",
+  databaseURL: "https://apcp-generator.firebaseio.com",
   projectId: "apcp-generator",
   storageBucket: "apcp-generator.appspot.com",
   messagingSenderId: "715065907857",
@@ -17,6 +18,7 @@ try {
     }
   }
 
+//authentication and firestore database objects
 const auth = firebase.auth();
 const db = firebase.firestore();
 

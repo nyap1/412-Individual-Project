@@ -1,3 +1,4 @@
+
 //Sign Up
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {
@@ -11,8 +12,8 @@ signupForm.addEventListener('submit', (e) => {
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
         console.log(cred.user)
 
-        const modal = document.querySelector('signup-modal');
-        M.modal.getInstance(modal).close();
+        const modal = document.querySelector('#signup-modal');
+        M.Modal.getInstance(modal).close();
         signupForm.reset();
     })
 })
