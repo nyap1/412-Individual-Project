@@ -4,6 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Modal.init(modals);
   
     var items = document.querySelectorAll('.collapsible');
-    M.Collapsible.init(items);
+    var instance = M.Collapsible.init(items);
   
   });

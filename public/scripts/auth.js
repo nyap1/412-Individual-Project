@@ -10,10 +10,38 @@ signupForm.addEventListener('submit', (e) => {
 
     //signing up the user
     auth.createUserWithEmailAndPassword(email, password).then(cred => {
-        console.log(cred.user)
 
+        //closing the sign up modal
         const modal = document.querySelector('#signup-modal');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
-    })
+    });
+});
+
+//Logging out
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) =>{
+    e.preventDefault();
+    auth.signOut().then(()=>{
+        console.log('user signed out');
+    });
+});
+
+//Logging in
+
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    //grabbing user info
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+
+    auth.signInWithEmailAndPassword(email, password).then(cred =>{
+        console.log(cred.user);
+        //closing the modal
+        const modal = document.querySelector('#login-modal');
+        M.Modal.getInstance(modal).close();
+        loginForm.reset();
+    }) 
 })

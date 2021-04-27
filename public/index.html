@@ -33,7 +33,7 @@
           <a href ="#">Prompt History</a>
         </li>
         <li class="logged-in">
-          <a href="#">Logout</a>
+          <a href="#" id="logout">Logout</a>
         </li>
         <li class="logged-out">
           <a href ="#" class = "modal-trigger" data-target="login-modal">Login</a>
@@ -57,11 +57,12 @@
             <label for="signup-password">Password</label>
             <input type="password" id="signup-password" required />
           </div>
-          <button type="submit" class="signup-btn">Sign up</button>
+          <div class = "center">
+            <button type="submit" class="signup-btn">Sign up</button>
+          </div>
         </form>
       </div>
     </div>
-
 
     <!-- LOGIN MODAL -->
     <div id="login-modal" class="modal">
@@ -76,7 +77,9 @@
             <input type="password" id="login-password" required />
             <label for="login-password">Your password</label>
           </div>
-         <button type="submit" class="signup-btn">Login</button>
+          <div class="center">
+            <button type="submit" class="signup-btn">Login</button>
+          </div>
         </form>
       </div>
     </div>
@@ -86,7 +89,7 @@
       <div class="modal-content">
         <h4>Submit a Prompt Idea!</h4>
         <p>Fill in the form with your idea and make sure to select which category it belongs to.</p>
-        <div class="prompt-form">
+        <div id="prompt-form">
           <form>
             <label class="container" for="character">
               <input type="radio" id="character" name="promptType" value="character">
@@ -110,19 +113,31 @@
               <input type="submit" value="Submit">
             </div>
           </form>
+          <br>
+
+          <div class="center" id= "form-display" style="color:red; font-size: 18px; font-weight: bold;"> 
+          </div>
         </div>
       </div>
     </div>
 
-
-
-
     <!--Generator Information-->
-    <div class="tutorial">
-      <h2>How to use the generator</h2>
-
-
+    <div id= "container directions">   
+      <a class="waves-effect waves-light btn modal-trigger" href="#directions">Directions</a>
+      <div id="directions" class="modal">
+        <div class="modal-content">
+          <h4>How to use the generator</h4>
+          <p>Push the buttons to generate a random character, action, and location for your random art prompt. You can push the corresponding button if you want to change something.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
     </div>
+
+    <!--Prompt Generator-->
+
+
 
     <!--firebase stuff-->
     <!-- update the version number as needed -->
@@ -131,7 +146,7 @@
     <script src="/__/firebase/8.4.2/firebase-auth.js"></script>
     <script src="/__/firebase/8.4.2/firebase-firestore.js"></script>
     <script src="/__/firebase/8.4.2/firebase-analytics.js"></script>
-    <script src="/__/firebase/init.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
 
     <!--contains firebase config-->
     <script src="scripts/index.js"></script>   

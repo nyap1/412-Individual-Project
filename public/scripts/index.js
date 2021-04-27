@@ -23,3 +23,48 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 db.settings({timestampsInSnapshots:true});
+
+//processing prompt submissions
+const subForm = document.querySelector('#prompt-form');
+subForm.addEventListener('submit', (e) =>{
+  e.preventDefault(); //stops the page from refreshing when the button is pressed.
+  const modal = document.querySelector('#prompt-modal'); //for when it's time to close the modal
+  //detecting which radio button is selected
+  if (document.getElementById('character').checked){ //if character button is selected
+    db.collection('characters').add({
+      character: document.getElementById("promptIdea").value
+    });
+    //resetting the form
+    document.getElementById("promptIdea").value = '';
+    document.getElementById('form-display').innerHTML = "";
+    
+    //closing the modal
+    M.Modal.getInstance(modal).close();
+
+  } else if (document.getElementById('action').checked){ //if action is selected
+    db.collection('actions').add({
+      action: document.getElementById("promptIdea").value
+    });
+    //resetting the form
+    document.getElementById("promptIdea").value = '';
+    document.getElementById('form-display').innerHTML = "";
+    //closing the modal
+    M.Modal.getInstance(modal).close();
+
+  } else if (document.getElementById('location').checked){ //if location is selected
+    db.collection('locations').add({
+      location: document.getElementById("promptIdea").value
+    });
+    //resetting the form
+    document.getElementById("promptIdea").value = '';
+    document.getElementById('form-display').innerHTML = "";
+    //closing the modal
+    M.Modal.getInstance(modal).close();
+    
+  } else { //for when no radio button is selected.
+    document.getElementById('form-display').innerHTML = "please select a prompt type.";
+  }
+  var ele = document.getElementsByName("promptType");
+  for(var i=0;i<ele.length;i++)
+     ele[i].checked = false;
+});
