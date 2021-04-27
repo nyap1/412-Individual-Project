@@ -12,13 +12,6 @@
     <!--working name-->
     <title>Art Prompt and Palette Generator</title>
 
-
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-    
   </head>
   <body>
     <!--firebase stuff-->
@@ -131,58 +124,26 @@
 
     </div>
 
-
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
-
-    <!--sticky navigation bar-->
-    <script>
-      window.onscroll = function() {stickyBar()};
-
-      // Get the navbar
-      var navbar = document.getElementById("navbar");
-
-      // Get the offset position of the navbar
-      var sticky = navbar.offsetTop;
-
-      // Add the sticky class to the navbar when it reaches the top
-      function stickyBar() {
-        if (window.pageYOffset >= sticky) {
-          navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky"); //removes sticky class when bar's no longer at the top
-          }
-        }
-    </script>
-
     <!--firebase stuff-->
     <!-- update the version number as needed -->
-    <script src="/__/firebase/8.3.3/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.4.2/firebase-app.js"></script>
+    <script src="/__/firebase/8.4.2/firebase-auth.js"></script>
+    <script src="/__/firebase/8.4.2/firebase-firestore.js"></script>
+    <script src="/__/firebase/8.4.2/firebase-analytics.js"></script>
+    <script src="/__/firebase/init.js"></script>
 
-    <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyCsjzeGbTVxJwMlO5qJkRiIO9xTB_sM3_k",
-        authDomain: "apcp-generator.firebaseapp.com",
-        projectId: "apcp-generator",
-        storageBucket: "apcp-generator.appspot.com",
-        messagingSenderId: "715065907857",
-        appId: "1:715065907857:web:565c06a9eef5b2cd0ffd30",
-        measurementId: "G-P5GKQLBGCT"
-      };
+    <!--contains firebase config-->
+    <script src="scripts/index.js"></script>   
 
-      firebase.initializeApp(firebaseConfig);
-
-      const auth = firebase.auth();
-      const db = firebase.firestore();
-
-      db.settings({timestampsInSnapshots:true});
-  </script>
-    <script src="/__/firebase/8.3.3/firebase-auth.js"></script>
-    <script src="/__/firebase/8.3.3/firebase-firestore.js"></script>
-    <script src="/__/firebase/8.3.3/firebase-analytics.js"></script>
-
-    <script src="scripts/index.js"></script>
-    <script src="scripts/auth.js"></script>
+    <!--script for modals-->
+    <script src="scripts/modal.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--script for authentication-->
+    <script src="scripts/auth.js"></script>
+
+    <!--sticky navigation bar-->
+    <script src="scripts/stickyBar.js"></script>
   </body>
 </html>
