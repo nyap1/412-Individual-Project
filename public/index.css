@@ -1,6 +1,7 @@
-body{
+html, body{
     background-color: #B8D3E8; /*a nice baby blue*/
     font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
 }
 /*navigation bar*/
 ul {
@@ -37,20 +38,6 @@ li a:hover:not(.active){
     width: 100%;
 }
 
-/*Class for when element is above threshold*/
-.pin-top {
-  position: relative;
-}
-
-/*Class for when element is below threshold*/
-.pin-bottom {
-  position: relative;
-}
-
-/*Class for when element is pinned*/
-.pinned {
-  position: fixed !important;
-}
 
 
 

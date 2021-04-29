@@ -12,16 +12,19 @@
 
 
     <!--working name-->
-    <title>Art Prompt and Palette Generator</title>
+    <title>Prompt and Palette Generator</title>
 
   </head>
   <body>
     <!--navigation bar at the top of the screen-->
     <div id="topbar" class="topbar">
-      <nav class="pin-top" style="top: 0px">
+      <nav class="pushpin" data-target="topbar" >
         <ul class="navbar right" id="nav-mobile">
           <li>
             <a class = "active black-text" href ="index.html">Home</a>
+          </li>
+          <li>
+            <a class="modal-trigger black-text" href="#" data-target="directions">Directions</a>
           </li>
           <li>
             <a href ="#" class="black-text">About</a>
@@ -29,7 +32,6 @@
           <li>
             <a href ="#" class="modal-trigger black-text" data-target="prompt-modal">Submit a Prompt</a>
           </li>
-          <!--TODO: Figure out how to make one or the other appear-->
           <li class="logged-in" style="display: none;">
             <a href ="#" class="black-text">Prompt History</a>
           </li>
@@ -47,6 +49,23 @@
       
     </div>
     
+    <!--Generator Information-->
+    <div id= "container directions">   
+      <div id="directions" class="modal">
+        <div class="modal-content">
+          <h4>How to use the generator</h4>
+          <p>
+            Push the "Generate" button to generate a random character, action, and location for your random art prompt. 
+            You can push the corresponding button if you want to reroll something. The same thing goes for the palette 
+            generator. Make an account to save your prompt and palette!
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
+    </div>    
+
     <!--SIGN UP MODAL-->
     <div id="signup-modal" class="modal">
       <div class = "modal-content">
@@ -124,24 +143,6 @@
       </div>
     </div>
 
-    <!--Generator Information-->
-    <div id= "container directions">   
-      <a class="waves-effect waves-light btn modal-trigger z-depth-3" href="#directions">Directions</a>
-      <div id="directions" class="modal">
-        <div class="modal-content">
-          <h4>How to use the generator</h4>
-          <p>
-            Push the "Generate" button to generate a random character, action, and location for your random art prompt. 
-            You can push the corresponding button if you want to reroll something. The same thing goes for the palette 
-            generator. Make an account to save your prompt and palette!
-          </p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
-      </div>
-    </div>
-
     <!--Prompt Generator-->
     <div class= "container center z-depth-5">
       <div class= "card-panel white">
@@ -204,7 +205,7 @@
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 1</span>
               <div class="card-content">
-
+                <img id="colour1-display">
               </div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour1-reroll-btn">Reroll</button>
@@ -216,7 +217,7 @@
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 2</span>
               <div class="card-content">
-
+                <img id="colour2-display">
               </div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour2-reroll-btn">Reroll</button>
@@ -228,7 +229,7 @@
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 3</span>
               <div class="card-content">
-
+                <img id="colour3-display">
               </div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour3-reroll-btn">Reroll</button>
@@ -263,11 +264,10 @@
     <!--script for modals and materialize-->
     <script src="scripts/modal.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/stickyBar.js"></script>
 
     <!--script for authentication-->
     <script src="scripts/auth.js"></script>
-
-    <!--sticky navigation bar-->
-    <script src="scripts/stickyBar.js"></script>
+ 
   </body>
 </html>

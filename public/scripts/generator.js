@@ -107,3 +107,37 @@ function generateLocation(){
                     console.log('Error getting documents', err);
                 });
 }
+
+//COLOUR PALETTE GENERATORS
+    //random hex maker
+    function getRandomHex() {
+        var letters = '0123456789ABCDEF'.split('');
+        var colour = '#';
+        for (var i = 0; i < 6; i++){
+            colour += letters[Math.floor(Math.random() * 16)];
+        }
+        return colour;
+    }
+    //grabbing the colour display elements
+    const colour1Display = document.getElementById('colour1-display');
+    const colour2Display = document.getElementById('colour2-display');
+    const colour3Display = document.getElementById('colour3-display');
+
+    //generator for colour 1
+    function generateColour1() {
+        var colour = getRandomHex();
+        colour1Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+    }
+
+    //generator for colour 2
+    function generateColour2() {
+        var colour = getRandomHex();
+        colour2Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+    }
+
+    //generator for colour 3
+    function generateColour3() {
+        var colour = getRandomHex();
+        colour3Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+    }
+

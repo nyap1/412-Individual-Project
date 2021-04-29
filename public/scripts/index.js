@@ -119,3 +119,36 @@ locationRollBtn.addEventListener('click', (e)=>{
   generateLocation();
 });
 
+//colour palette generator usage
+const colour1RollBtn = document.querySelector('#colour1-reroll-btn');
+const colour2RollBtn = document.querySelector('#colour2-reroll-btn');
+const colour3RollBtn = document.querySelector('#colour3-reroll-btn');
+const paletteGeneratorBtn = document.querySelector('#palette-generate-btn')
+
+//for the whole palette
+paletteGeneratorBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateColour1();
+  generateColour2();
+  generateColour3();
+});
+
+//colour 1
+colour1RollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateColour1();
+});
+
+//colour 2
+colour2RollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateColour2();
+});
+
+//colour 3
+colour3RollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateColour3();
+});
+
+

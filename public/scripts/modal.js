@@ -5,9 +5,5 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Modal.init(modals);
   
     var items = document.querySelectorAll('.collapsible');
-    var instance = M.Collapsible.init(items);
-
-    var elems = document.querySelectorAll('.pushpin');
-    var instances = M.Pushpin.init(elems);
-  
+    var instance = M.Collapsible.init(items);  
   });
