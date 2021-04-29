@@ -24,6 +24,22 @@ const db = firebase.firestore();
 
 db.settings({timestampsInSnapshots:true});
 
+//conditional navigation bar links
+const loggedOutLinks = document.querySelectorAll('.logged-out');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+
+const setupUI = (user) => {
+  if (user){
+    //toggle UI elements (logged in)
+    loggedInLinks.forEach(item => item.style.display = 'block');
+    loggedOutLinks.forEach(item => item.style.display = 'none');
+  }else{
+    //not logged in
+    loggedInLinks.forEach(item => item.style.display = 'none');
+    loggedOutLinks.forEach(item => item.style.display = 'block');
+  }
+}
+
 //processing prompt submissions
 const subForm = document.querySelector('#prompt-form');
 subForm.addEventListener('submit', (e) =>{
@@ -64,7 +80,42 @@ subForm.addEventListener('submit', (e) =>{
   } else { //for when no radio button is selected.
     document.getElementById('form-display').innerHTML = "please select a prompt type.";
   }
+
+  //resetting the radio buttons
   var ele = document.getElementsByName("promptType");
   for(var i=0;i<ele.length;i++)
      ele[i].checked = false;
 });
+
+//actual generator usage
+const characterRollBtn = document.querySelector('#character-reroll-btn');
+const actionRollBtn = document.querySelector('#action-reroll-btn');
+const locationRollBtn = document.querySelector('#location-reroll-btn');
+const promptGeneratorBtn = document.querySelector('#prompt-generate-btn')
+
+//whole prompt roller
+promptGeneratorBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateCharacter();
+  generateAction();
+  generateLocation();
+});
+
+//character reroll
+characterRollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateCharacter();
+});
+
+//action reroll
+actionRollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateAction();
+});
+
+//location reroll
+locationRollBtn.addEventListener('click', (e)=>{
+  e.preventDefault();
+  generateLocation();
+});
+

@@ -17,7 +17,6 @@ li {
 }
 
 li a {
-    display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
@@ -38,8 +37,20 @@ li a:hover:not(.active){
     width: 100%;
 }
 
-/*form css*/
-.prompt-idea{
-    font-size: 16px;
+/*Class for when element is above threshold*/
+.pin-top {
+  position: relative;
 }
+
+/*Class for when element is below threshold*/
+.pin-bottom {
+  position: relative;
+}
+
+/*Class for when element is pinned*/
+.pinned {
+  position: fixed !important;
+}
+
+
 

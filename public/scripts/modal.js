@@ -1,3 +1,4 @@
+//contains materialize css initialization
 document.addEventListener('DOMContentLoaded', function() {
 
     var modals = document.querySelectorAll('.modal');
@@ -5,5 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
     var items = document.querySelectorAll('.collapsible');
     var instance = M.Collapsible.init(items);
+
+    var elems = document.querySelectorAll('.pushpin');
+    var instances = M.Pushpin.init(elems);
   
   });

@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="index.css">
-    <!--stylesheet underneath is to help with the modals-->
+    <!--materialize stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--materialize icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
     <!--working name-->
@@ -14,34 +16,35 @@
 
   </head>
   <body>
-    <!--firebase stuff-->
-
     <!--navigation bar at the top of the screen-->
     <div id="topbar" class="topbar">
-      <ul class="navbar">
-        <li>
-          <a class = "active" href ="index.html">Home</a>
-        </li>
-        <li>
-          <a href ="#">About</a>
-        </li>
-        <li>
-          <a href ="submit.html" class="modal-trigger" data-target="prompt-modal">Submit a Prompt</a>
-        </li>
-        <!--TODO: Figure out how to make one or the other appear-->
-        <li class="logged-in">
-          <a href ="#">Prompt History</a>
-        </li>
-        <li class="logged-in">
-          <a href="#" id="logout">Logout</a>
-        </li>
-        <li class="logged-out">
-          <a href ="#" class = "modal-trigger" data-target="login-modal">Login</a>
-        </li>
-        <li class="logged-out">
-          <a href ="#" class = "modal-trigger" data-target="signup-modal">Sign Up</a>
-        </li>
+      <nav class="pin-top" style="top: 0px">
+        <ul class="navbar right" id="nav-mobile">
+          <li>
+            <a class = "active black-text" href ="index.html">Home</a>
+          </li>
+          <li>
+            <a href ="#" class="black-text">About</a>
+          </li>
+          <li>
+            <a href ="#" class="modal-trigger black-text" data-target="prompt-modal">Submit a Prompt</a>
+          </li>
+          <!--TODO: Figure out how to make one or the other appear-->
+          <li class="logged-in" style="display: none;">
+            <a href ="#" class="black-text">Prompt History</a>
+          </li>
+          <li class="logged-in" style="display: none;">
+            <a href="#" id="logout" class="black-text">Logout</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class="modal-trigger black-text" data-target="login-modal">Login</a>
+          </li>
+          <li class="logged-out" style="display: none;">
+            <a href="#" class ="modal-trigger black-text" data-target="signup-modal">Sign Up</a>
+          </li>
       </ul>
+    </nav>
+      
     </div>
     
     <!--SIGN UP MODAL-->
@@ -123,11 +126,15 @@
 
     <!--Generator Information-->
     <div id= "container directions">   
-      <a class="waves-effect waves-light btn modal-trigger" href="#directions">Directions</a>
+      <a class="waves-effect waves-light btn modal-trigger z-depth-3" href="#directions">Directions</a>
       <div id="directions" class="modal">
         <div class="modal-content">
           <h4>How to use the generator</h4>
-          <p>Push the buttons to generate a random character, action, and location for your random art prompt. You can push the corresponding button if you want to change something.</p>
+          <p>
+            Push the "Generate" button to generate a random character, action, and location for your random art prompt. 
+            You can push the corresponding button if you want to reroll something. The same thing goes for the palette 
+            generator. Make an account to save your prompt and palette!
+          </p>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
@@ -136,8 +143,109 @@
     </div>
 
     <!--Prompt Generator-->
+    <div class= "container center z-depth-5">
+      <div class= "card-panel white">
+        <h3>Prompt Generator</h3>
+        <div class="row">
+          <!--character generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Character</span>
+              <div class="card-content" id="character-display">
 
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="character-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+          <!--action generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Action</span>
+              <div class="card-content" id="action-display">
 
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="action-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+          <!--location generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Location</span>
+              <div class="card-content" id="location-display">
+
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="location-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="waves-effect waves-light btn" id="prompt-generate-btn">
+            <i class="material-icons left">edit</i>
+            Generate
+          </button>
+          <button class="waves-effect waves-light btn logged-in" id="prompt-save-btn" style="display: none;">Save</button>
+        </div> 
+      </div>
+    </div>
+
+    <!--Palette Generator-->
+    <div class= "container center z-depth-5">
+      <div class="card-panel white">
+        <h3>Palette Generator</h3>
+        <div class="row">
+          <!--colour 1 generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Colour 1</span>
+              <div class="card-content">
+
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="colour1-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+          <!--colour 2 generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Colour 2</span>
+              <div class="card-content">
+
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="colour2-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+          <!--colour 3 generator card-->
+          <div class="col s4">
+            <div class="card light-blue lighten-5">
+              <span class="card-title">Colour 3</span>
+              <div class="card-content">
+
+              </div>
+              <div class="card-action">
+                <button class="waves-effect waves-light btn-small" id="colour3-reroll-btn">Reroll</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button class="waves-effect waves-light btn" id="palette-generate-btn">
+            <i class="material-icons left">palette</i>
+            Generate
+          </button>
+          <button class="waves-effect waves-light btn logged-in" id="palette-save-btn" style="display: none;">Save</button>
+        </div> 
+      </div>
+    </div>
+        
 
     <!--firebase stuff-->
     <!-- update the version number as needed -->
@@ -148,10 +256,11 @@
     <script src="/__/firebase/8.4.2/firebase-analytics.js"></script>
     <script src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <!--contains firebase config-->
+    <!--contains firebase config and other functions-->
     <script src="scripts/index.js"></script>   
+    <script src="scripts/generator.js"></script>
 
-    <!--script for modals-->
+    <!--script for modals and materialize-->
     <script src="scripts/modal.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
