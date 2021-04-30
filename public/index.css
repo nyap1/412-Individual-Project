@@ -4,7 +4,7 @@ html, body{
     height: 100%;
 }
 /*navigation bar*/
-ul {
+.navbar {
     width: 100%;
     list-style-type: none;
     margin: 0;
@@ -13,18 +13,17 @@ ul {
     background-color: #F4F4F4; /*light grey*/
 }
 
-li {
+.navbar-li {
     float: left;
 }
 
-li a {
+.navbar-li a {
     color: black;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
 }
 
-li a:hover:not(.active){
+.navbar-li a:hover:not(.active){
     background-color: #CACACA;
 }
 
