@@ -50,40 +50,88 @@ const setupUI = (user) => {
 const promptHistory= document.querySelector('#prompt-history-body');
 
 const setupPromptHistory = (data) => {
-  let html = '';
-  data.forEach(doc =>{
-    
-    const prompt = doc.data();
-    const tr = `
-      <tr>
-        <td>${prompt.character}</td>
-        <td>${prompt.action}</td>
-        <td>${prompt.location}</td>
-      </tr> 
-    `;
-    html += tr;
-  });
-  promptHistory.innerHTML = html;
+
+  //clears the table when the function is called again when the database updates
+  while(promptHistory.hasChildNodes()){
+    promptHistory.removeChild(promptHistory.lastChild);
+  }
+
+  //populating the table
+  data.forEach(doc =>{  
+
+    //creating the table rows and content
+    let tr = document.createElement('tr');
+    let character = document.createElement('td');
+    let action = document.createElement('td');
+    let location = document.createElement('td');
+    let deleter = document.createElement('td');
+
+    //putting data in the elements
+    tr.setAttribute('data-id', doc.id);
+    character.textContent = doc.data().character;
+    action.textContent = doc.data().action;
+    location.textContent = doc.data().location;
+    deleter.textContent = 'x';
+    deleter.setAttribute('class', "waves-effect waves-light");
+
+    //putting the table data in to the table row
+    tr.appendChild(character);
+    tr.appendChild(action);
+    tr.appendChild(location);
+    tr.appendChild(deleter);
+
+    //putting the table row into the table
+    promptHistory.appendChild(tr);
+
+    //delete function
+    deleter.addEventListener('click', (e)=> {
+      let id = e.target.parentElement.getAttribute("data-id");
+      db.collection('users/' + auth.currentUser.uid + '/prompts').doc(id).delete();
+    });
+  })
 }
 
 //setting up palette history
 const paletteHistory= document.querySelector('#palette-history-body');
 
+//clears the table when the function is called again when the database updates
 const setupPaletteHistory = (data) => {
-  let html = '';
+  while(paletteHistory.hasChildNodes()){
+    paletteHistory.removeChild(paletteHistory.lastChild);
+  }
+
+  //populating the table
   data.forEach(doc =>{
-    
-    const palette = doc.data();
-    const tr = `
-      <tr>
-        <td><img src=${palette.colour1}></img></td>
-        <td><img src=${palette.colour2}></img></td>
-        <td><img src=${palette.colour3}></img></td>
-      </tr> 
-    `;
-    html += tr;
+    //creating the table rows
+    let tr = document.createElement('tr');
+    let colour1 = document.createElement('td');
+    let colour2 = document.createElement('td');
+    let colour3 = document.createElement('td');
+    let deleter = document.createElement('td');
+
+    //putting data in the elements
+    tr.setAttribute('data-id', doc.id);
+    colour1.innerHTML = `<img src=${doc.data().colour1}></img>`;
+    colour2.innerHTML = `<img src=${doc.data().colour2}></img>`;
+    colour3.innerHTML = `<img src=${doc.data().colour3}></img>`;
+    deleter.textContent = 'x';
+    deleter.setAttribute('class', "waves-effect waves-light");
+
+    //adding the table data to the table row
+    tr.appendChild(colour1);
+    tr.appendChild(colour2);
+    tr.appendChild(colour3);
+    tr.appendChild(deleter);
+
+    //adding the row to the table
+    paletteHistory.appendChild(tr);
+
+    //delete function
+    deleter.addEventListener('click', (e)=> {
+      let id = e.target.parentElement.getAttribute("data-id");
+      db.collection('users/' + auth.currentUser.uid + '/palettes').doc(id).delete();
+    });
   });
-  paletteHistory.innerHTML = html;
 }
 
 //processing prompt submissions

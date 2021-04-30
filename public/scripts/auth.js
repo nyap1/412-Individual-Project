@@ -3,11 +3,14 @@
 auth.onAuthStateChanged(user=>{
     if(user){
         //prompt history
-        db.collection('users/' + auth.currentUser.uid + '/prompts').get().then(snapshot=>{
+        // db.collection('users/' + auth.currentUser.uid + '/prompts').get().then(snapshot=>{
+        //     setupPromptHistory(snapshot.docs);
+        // });
+        db.collection('users/' + auth.currentUser.uid + '/prompts').onSnapshot(snapshot=>{
             setupPromptHistory(snapshot.docs);
         });
         //palette history
-        db.collection('users/' + auth.currentUser.uid + '/palettes').get().then(snapshot=>{
+        db.collection('users/' + auth.currentUser.uid + '/palettes').onSnapshot(snapshot=>{
             setupPaletteHistory(snapshot.docs);
         });
         
