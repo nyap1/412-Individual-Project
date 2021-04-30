@@ -27,9 +27,15 @@ db.settings({timestampsInSnapshots:true});
 //conditional navigation bar links
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
+const accountName = document.querySelector('#account');
+
 
 const setupUI = (user) => {
   if (user){
+    //acount info display
+    const accountHtml = `<div>Logged in as ${user.email}</div>`;
+    accountName.innerHTML = accountHtml;
+
     //toggle UI elements (logged in)
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
@@ -38,6 +44,46 @@ const setupUI = (user) => {
     loggedInLinks.forEach(item => item.style.display = 'none');
     loggedOutLinks.forEach(item => item.style.display = 'block');
   }
+}
+
+//setting up the prompt history
+const promptHistory= document.querySelector('#prompt-history-body');
+
+const setupPromptHistory = (data) => {
+  let html = '';
+  data.forEach(doc =>{
+    
+    const prompt = doc.data();
+    const tr = `
+      <tr>
+        <td>${prompt.character}</td>
+        <td>${prompt.action}</td>
+        <td>${prompt.location}</td>
+      </tr> 
+    `;
+    html += tr;
+  });
+  promptHistory.innerHTML = html;
+}
+
+//setting up palette history
+const paletteHistory= document.querySelector('#palette-history-body');
+
+const setupPaletteHistory = (data) => {
+  let html = '';
+  data.forEach(doc =>{
+    
+    const palette = doc.data();
+    const tr = `
+      <tr>
+        <td><img src=${palette.colour1}></img></td>
+        <td><img src=${palette.colour2}></img></td>
+        <td><img src=${palette.colour3}></img></td>
+      </tr> 
+    `;
+    html += tr;
+  });
+  paletteHistory.innerHTML = html;
 }
 
 //processing prompt submissions
@@ -150,5 +196,53 @@ colour3RollBtn.addEventListener('click', (e)=>{
   e.preventDefault();
   generateColour3();
 });
+
+//save buttons and listeners
+  const promptSaveBtn = document.querySelector('#prompt-save-btn');
+  const paletteSaveBtn = document.querySelector('#palette-save-btn');
+
+  promptSaveBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    //check if the displays are empty before saving
+    if(document.getElementById('prompt-placeholder') == null){
+
+      savePrompt();
+    }
+    else{
+      alert("Generate a prompt first!");
+    }
+  });
+
+  paletteSaveBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    //check if the displays are empty before saving
+    if(document.getElementById('colour1-display').src 
+    || document.getElementById('colour2-display').src 
+    ||document.getElementById('colour3-display').src){
+      savePalette();
+    }
+    else{
+      alert("Generate a palette first!");
+    }
+  });
+
+//save functions
+function savePrompt() {
+  db.collection('users/' + auth.currentUser.uid + '/prompts')
+  .add({
+    character: document.getElementById('character-display').innerHTML,
+    action: document.getElementById('action-display').innerHTML,
+    location: document.getElementById('location-display').innerHTML
+  });
+}
+
+function savePalette() {
+  db.collection('users/' + auth.currentUser.uid + '/palettes')
+  .add({
+    colour1: document.getElementById('colour1-display').src,
+    colour2: document.getElementById('colour2-display').src,
+    colour3: document.getElementById('colour3-display').src
+  });
+}
 
 

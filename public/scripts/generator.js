@@ -10,7 +10,6 @@ const characterDisplay = document.querySelector('#character-display');
 const actionDisplay = document.querySelector('#action-display');
 const locationDisplay = document.querySelector('#location-display');
 
-
 //character generator
 function generateCharacter(){
     //getting random character from the database
