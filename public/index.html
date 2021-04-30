@@ -59,8 +59,7 @@
           <p>
             Push the "Generate" button to generate a random character, action, and location for your random art prompt. 
             You can push the corresponding button if you want to reroll something. The same thing goes for the palette 
-            generator. Make an account to save your prompt and palette! (For now you'll have to refresh the page to see your
-            saved items in your history.)
+            generator. Make an account to save your prompt and palette!
           </p>
         </div>
         <div class="modal-footer">
@@ -85,6 +84,7 @@
           <div class = "center">
             <button type="submit" class="signup-btn">Sign up</button>
           </div>
+          <p class="error pink-text center-align"></p>
         </form>
       </div>
     </div>
@@ -105,6 +105,7 @@
           <div class="center">
             <button type="submit" class="signup-btn">Login</button>
           </div>
+          <p class="error pink-text center-align"></p>
         </form>
       </div>
     </div>
@@ -158,6 +159,7 @@
                 <th>Character</th>
                 <th>Action</th>
                 <th>Location</th>
+                <th></th>
               </tr>
               </thead>
               <tbody id="prompt-history-body"></tbody>
@@ -173,6 +175,7 @@
                 <th>Colour One</th>
                 <th>Colour Two</th>
                 <th>Colour Three</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="palette-history-body"></tbody>
@@ -285,6 +288,10 @@
       </div>
     </div>
         
+    <!--script for modals and materialize-->
+    <script src="scripts/modal.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/stickyBar.js"></script>
 
     <!--firebase stuff-->
     <!-- update the version number as needed -->
@@ -299,10 +306,6 @@
     <script src="scripts/index.js"></script>   
     <script src="scripts/generator.js"></script>
 
-    <!--script for modals and materialize-->
-    <script src="scripts/modal.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="scripts/stickyBar.js"></script>
 
     <!--script for authentication-->
     <script src="scripts/auth.js"></script>

@@ -72,7 +72,7 @@ const setupPromptHistory = (data) => {
     action.textContent = doc.data().action;
     location.textContent = doc.data().location;
     deleter.textContent = 'x';
-    deleter.setAttribute('class', "waves-effect waves-light");
+    deleter.setAttribute('class', "waves-effect waves-light centered");
 
     //putting the table data in to the table row
     tr.appendChild(character);
@@ -85,6 +85,7 @@ const setupPromptHistory = (data) => {
 
     //delete function
     deleter.addEventListener('click', (e)=> {
+      M.toast({html: 'Prompt Deleted!'});
       let id = e.target.parentElement.getAttribute("data-id");
       db.collection('users/' + auth.currentUser.uid + '/prompts').doc(id).delete();
     });
@@ -128,6 +129,7 @@ const setupPaletteHistory = (data) => {
 
     //delete function
     deleter.addEventListener('click', (e)=> {
+      M.toast({html: 'Palette Deleted!'}); 
       let id = e.target.parentElement.getAttribute("data-id");
       db.collection('users/' + auth.currentUser.uid + '/palettes').doc(id).delete();
     });
@@ -160,6 +162,7 @@ subForm.addEventListener('submit', (e) =>{
     document.getElementById('form-display').innerHTML = "";
     //closing the modal
     M.Modal.getInstance(modal).close();
+    M.toast({html: 'Prompt Submitted! Thank you!'});
 
   } else if (document.getElementById('location').checked){ //if location is selected
     db.collection('locations').add({
@@ -253,7 +256,7 @@ colour3RollBtn.addEventListener('click', (e)=>{
     e.preventDefault();
     //check if the displays are empty before saving
     if(document.getElementById('prompt-placeholder') == null){
-
+      M.toast({html: 'Prompt Saved!'});
       savePrompt();
     }
     else{
@@ -267,6 +270,7 @@ colour3RollBtn.addEventListener('click', (e)=>{
     if(document.getElementById('colour1-display').src 
     || document.getElementById('colour2-display').src 
     ||document.getElementById('colour3-display').src){
+      M.toast({html: 'Palette Saved!'});
       savePalette();
     }
     else{

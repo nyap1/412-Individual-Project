@@ -3,9 +3,6 @@
 auth.onAuthStateChanged(user=>{
     if(user){
         //prompt history
-        // db.collection('users/' + auth.currentUser.uid + '/prompts').get().then(snapshot=>{
-        //     setupPromptHistory(snapshot.docs);
-        // });
         db.collection('users/' + auth.currentUser.uid + '/prompts').onSnapshot(snapshot=>{
             setupPromptHistory(snapshot.docs);
         });
@@ -41,6 +38,10 @@ signupForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#signup-modal');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
+        signupForm.querySelector('.error').innerHTML = '';
+        M.toast({html: 'Account Created!'});
+    }).catch(err =>{
+        signupForm.querySelector('.error').innerHTML = err.message;
     });
 });
 
@@ -49,6 +50,7 @@ const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) =>{
     e.preventDefault();
     auth.signOut();
+    M.toast({html: 'Logged out!'});
 });
 
 //Logging in
@@ -66,5 +68,9 @@ loginForm.addEventListener('submit', (e) =>{
         const modal = document.querySelector('#login-modal');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
-    }) 
+        loginForm.querySelector('.error').innerHTML = '';
+        M.toast({html: 'Logged In!'});
+    }).catch(err =>{
+        loginForm.querySelector('.error').innerHTML = err.message;
+    }); 
 })
