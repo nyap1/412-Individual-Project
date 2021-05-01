@@ -14,97 +14,58 @@ const locationDisplay = document.querySelector('#location-display');
 function generateCharacter(){
     //getting random character from the database
 
-    var character_key = characters.doc().id; //generates a random id to compare to the databse
-
-    characters.where(firebase.firestore.FieldPath.documentId(), '>=', character_key).limit(1).get()
-                .then(snapshot => {
-                    if(snapshot.size > 0) {
-                        snapshot.forEach(doc => {
-                            let character = `${doc.get("character")}`;
-                            characterDisplay.innerHTML = character;
-                        });
-                    }
-                    else {
-                        var character = characters.where(firebase.firestore.FieldPath.documentId(), '<', character_key).limit(1).get()
-                        .then(snapshot => {
-                            snapshot.forEach(doc => {
-                                let character = `${doc.get("character")}`;
-                                characterDisplay.innerHTML = character;
-                            });
-                        })
-                        .catch(err => {
-                            console.log('Error getting documents', err);
-                        });
-                    }
-                })
-                .catch(err => {
-                    console.log('Error getting documents', err);
-                });
+    characters.get().then((collection) => {  
+        Math.seedrandom();                          
+        var i = 0;
+        var rand = Math.floor(Math.random() * collection.size);
+        collection.forEach(function(doc) {
+            if (i == rand) {
+                // picked random item, snapshot.val().                          
+                let character = doc.data().character;
+                characterDisplay.innerHTML = character;
+            }
+            i++;
+        });
+    });    
 }
 
 //action generator
 function generateAction(){
     //pull random action from the database
 
-    var action_key = actions.doc().id; //generates a random id to compare to the databse
-
-    actions.where(firebase.firestore.FieldPath.documentId(), '>=', action_key).limit(1).get()
-                .then(snapshot => {
-                    if(snapshot.size > 0) {
-                        snapshot.forEach(doc => {
-                            let action = `${doc.get("action")}`;
-                            actionDisplay.innerHTML = action;
-                        });
-                    }
-                    else {
-                        var action = actions.where(firebase.firestore.FieldPath.documentId(), '<', action_key).limit(1).get()
-                        .then(snapshot => {
-                            snapshot.forEach(doc => {
-                                let action = `${doc.get("action")}`;
-                                actionDisplay.innerHTML = action;
-                            });
-                        })
-                        .catch(err => {
-                            console.log('Error getting documents', err);
-                        });
-                    }
-                })
-                .catch(err => {
-                    console.log('Error getting documents', err);
-                });
+    actions.get().then((collection) => {  
+        Math.seedrandom();                          
+        var i = 0;
+        var rand = Math.floor(Math.random() * collection.size);
+        collection.forEach(function(doc) {
+            if (i == rand) {
+                // picked random item, snapshot.val().                          
+                    let action = doc.data().action;
+                    actionDisplay.innerHTML = action;
+            }
+            i++;
+        });
+    });  
 }
 
 //location generator
 
 function generateLocation(){
-    //pull random location from the database
+    //pull random location from the database 
 
-    var location_key = locations.doc().id; //generates a random id to compare to the databse
-
-    locations.where(firebase.firestore.FieldPath.documentId(), '>=', location_key).limit(1).get()
-                .then(snapshot => {
-                    if(snapshot.size > 0) {
-                        snapshot.forEach(doc => {
-                            let location = `${doc.get("location")}`;
-                            locationDisplay.innerHTML = location;
-                        });
-                    }
-                    else {
-                        locations.where(firebase.firestore.FieldPath.documentId(), '<', location_key).limit(1).get()
-                        .then(snapshot => {
-                            snapshot.forEach(doc => {
-                                let location = `${doc.get("location")}`;
-                                locationDisplay.innerHTML = location;
-                            });
-                        })
-                        .catch(err => {
-                            console.log('Error getting documents', err);
-                        });
-                    }
-                })
-                .catch(err => {
-                    console.log('Error getting documents', err);
-                });
+    locations.get().then((collection) => {  
+        Math.seedrandom();                          
+        var i = 0;
+        var rand = Math.floor(Math.random() * collection.size);
+        collection.forEach(function(doc) {
+            if (i == rand) {
+                // picked random item, snapshot.val().                          
+                    let location = doc.data().location;
+                    locationDisplay.innerHTML = location;
+            }
+            i++;
+        });
+    });  
 }
 
 //COLOUR PALETTE GENERATORS
@@ -118,25 +79,85 @@ function generateLocation(){
         return colour;
     }
     //grabbing the colour display elements
-    const colour1Display = document.getElementById('colour1-display');
-    const colour2Display = document.getElementById('colour2-display');
-    const colour3Display = document.getElementById('colour3-display');
+    const colour1Card = document.querySelector('.colour1-content');
+    const colour2Card = document.querySelector('.colour2-content');
+    const colour3Card = document.querySelector('.colour3-content');
 
     //generator for colour 1
-    function generateColour1() {
+    function generateColour1() {        
         var colour = getRandomHex();
-        colour1Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+        if(colour1Card.hasChildNodes()){
+            //any run after the first
+            const colour1Img = document.querySelector('#colour1-display');
+            const colour1Hex = document.querySelector('#colour1-hex');
+            colour1Img.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            colour1Hex.innerHTML = '#' + colour.substring(1); 
+        }
+        else{
+            //first run of the generator
+            //hex
+            var colour1Hex = document.createElement('p');
+            colour1Hex.setAttribute('id', "colour1-hex") 
+            colour1Hex.innerHTML = '#' + colour.substring(1); 
+            //image 
+            var colour1 = document.createElement('img');
+            colour1.setAttribute('id', "colour1-display")
+            colour1.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            //adding to parent node
+            colour1Card.appendChild(colour1);
+            colour1Card.appendChild(colour1Hex);
+        }
     }
 
     //generator for colour 2
     function generateColour2() {
         var colour = getRandomHex();
-        colour2Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+        if(colour2Card.hasChildNodes()){
+            //any run after the first
+            const colour2Img = document.querySelector('#colour2-display');
+            const colour2Hex = document.querySelector('#colour2-hex');
+            colour2Img.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            colour2Hex.innerHTML = '#' + colour.substring(1); 
+        }
+        else{
+            //first run of the generator
+            //hex
+            var colour2Hex = document.createElement('p');
+            colour2Hex.setAttribute('id', "colour2-hex") 
+            colour2Hex.innerHTML = '#' + colour.substring(1); 
+            //image 
+            var colour2 = document.createElement('img');
+            colour2.setAttribute('id', "colour2-display")
+            colour2.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            //adding to parent node
+            colour2Card.appendChild(colour2);
+            colour2Card.appendChild(colour2Hex);
+        }
     }
 
     //generator for colour 3
     function generateColour3() {
         var colour = getRandomHex();
-        colour3Display.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+        if(colour3Card.hasChildNodes()){
+            //any run after the first
+            const colour3Img = document.querySelector('#colour3-display');
+            const colour3Hex = document.querySelector('#colour3-hex');
+            colour3Img.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            colour3Hex.innerHTML = '#' + colour.substring(1); 
+        }
+        else{
+            //first run of the generator
+            //hex
+            var colour3Hex = document.createElement('p');
+            colour3Hex.setAttribute('id', "colour3-hex") 
+            colour3Hex.innerHTML = '#' + colour.substring(1); 
+            //image 
+            var colour3 = document.createElement('img');
+            colour3.setAttribute('id', "colour3-display")
+            colour3.src = 'https://www.thecolorapi.com/id?format=svg&hex=' + colour.substring(1);
+            //adding to parent node
+            colour3Card.appendChild(colour3);
+            colour3Card.appendChild(colour3Hex);
+        }
     }
 

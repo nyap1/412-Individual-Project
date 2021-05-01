@@ -11,7 +11,6 @@ auth.onAuthStateChanged(user=>{
             setupPaletteHistory(snapshot.docs);
         });
         
-        console.log('user logged in: ', user);
         setupUI(user);
     }else{
         setupUI();

@@ -28,10 +28,11 @@ db.settings({timestampsInSnapshots:true});
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountName = document.querySelector('#account');
-
+const navbar = document.querySelector('#nav');
 
 const setupUI = (user) => {
   if (user){
+    //things that happen if the user is logged in
     //acount info display
     const accountHtml = `<div>Logged in as ${user.email}</div>`;
     accountName.innerHTML = accountHtml;
@@ -112,10 +113,10 @@ const setupPaletteHistory = (data) => {
 
     //putting data in the elements
     tr.setAttribute('data-id', doc.id);
-    colour1.innerHTML = `<img src=${doc.data().colour1}></img>`;
-    colour2.innerHTML = `<img src=${doc.data().colour2}></img>`;
-    colour3.innerHTML = `<img src=${doc.data().colour3}></img>`;
-    deleter.textContent = 'x';
+    colour1.innerHTML = `<img src=${doc.data().colour1}></img><p>${doc.data().colour1Hex}</p>`;
+    colour2.innerHTML = `<img src=${doc.data().colour2}></img><p>${doc.data().colour2Hex}</p>`;
+    colour3.innerHTML = `<img src=${doc.data().colour3}></img><p>${doc.data().colour3Hex}</p>`;
+    deleter.textContent = 'X';
     deleter.setAttribute('class', "waves-effect waves-light");
 
     //adding the table data to the table row
@@ -292,8 +293,11 @@ function savePalette() {
   db.collection('users/' + auth.currentUser.uid + '/palettes')
   .add({
     colour1: document.getElementById('colour1-display').src,
+    colour1Hex: document.getElementById('colour1-hex').innerHTML,
     colour2: document.getElementById('colour2-display').src,
-    colour3: document.getElementById('colour3-display').src
+    colour2Hex: document.getElementById('colour2-hex').innerHTML,
+    colour3: document.getElementById('colour3-display').src,
+    colour3Hex: document.getElementById('colour3-hex').innerHTML
   });
 }
 

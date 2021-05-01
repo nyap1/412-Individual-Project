@@ -16,38 +16,36 @@
   </head>
   <body>
     <!--navigation bar at the top of the screen-->
-    <div id="topbar" class="topbar">
-      <nav class="pushpin" data-target="topbar" >
-        <ul class="navbar right" id="nav-mobile">
-          <li class="navbar-li">
-            <a class = "active black-text" href ="index.html">Home</a>
-          </li>
-          <li class="navbar-li">
-            <a class="modal-trigger black-text" href="#" data-target="directions">Directions</a>
-          </li>
-          <li class="navbar-li">
-            <a href ="#" class="black-text">About</a>
-          </li>
-          <li class="navbar-li">
-            <a href ="#" class="modal-trigger black-text" data-target="prompt-modal">Submit a Prompt</a>
-          </li>
-          <li class="logged-in navbar-li" style="display: none;">
-            <a href ="#" class="modal-trigger black-text" data-target="history-modal">Prompt History</a>
-          </li>
-          <li class="logged-in navbar-li" style="display: none;">
-            <a href="#" id="logout" class="black-text">Logout</a>
-          </li>
-          <li class="logged-out navbar-li" style="display: none;">
-            <a href="#" class="modal-trigger black-text" data-target="login-modal">Login</a>
-          </li>
-          <li class="logged-out navbar-li" style="display: none;">
-            <a href="#" class ="modal-trigger black-text" data-target="signup-modal">Sign Up</a>
-          </li>
-          <li class="logged-in black-text navbar-li" id="account" style="display: none; float: right; padding-right: 1cm;">
-
-          </li>
-      </ul>
-    </nav>
+    <div id="topbar" class="navbar-fixed">
+      <nav class="navbar-fixed">
+        <div class="navbar-wrapper">
+          <ul class="navbar right" id="nav">
+            <li class="navbar-li">
+              <a class = "active black-text" href ="index.html">Home</a>
+            </li>
+            <li class="navbar-li">
+              <a class="modal-trigger black-text" href="#" data-target="directions">Directions</a>
+            </li>
+            <li class="navbar-li">
+              <a href ="#" class="modal-trigger black-text" data-target="prompt-modal">Submit a Prompt</a>
+            </li>
+            <li class="logged-in navbar-li" style="display: none;">
+              <a href ="#" class="modal-trigger black-text" data-target="history-modal">Prompt History</a>
+            </li>
+            <li class="logged-in navbar-li" style="display: none;">
+              <a href="#" id="logout" class="black-text">Logout</a>
+            </li>
+            <li class="logged-out navbar-li" style="display: none;">
+              <a href="#" class="modal-trigger black-text" data-target="login-modal">Login</a>
+            </li>
+            <li class="logged-out navbar-li" style="display: none;">
+              <a href="#" class ="modal-trigger black-text" data-target="signup-modal">Sign Up</a>
+            </li>
+            <li class="logged-in black-text navbar-li" id="account" style="display: none; float: right; padding-right: 1cm;">
+            </li>
+          </ul>
+        </div>
+      </nav>
       
     </div>
     
@@ -172,7 +170,7 @@
           <!--Palette History Table-->
           <div class="collapsible-header"><i class="material-icons">palette</i>Palette History</div>
             <div class="collapsible-body">        
-            <table id="palette-history" class="highlight">
+            <table id="palette-history" class="highlight centered">
               <thead>
                 <tr>
                   <th>Colour One</th>
@@ -250,9 +248,7 @@
           <div class="col s4">
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 1</span>
-              <div class="card-content">
-                <img id="colour1-display">
-              </div>
+              <div class="card-content colour1-content"></div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour1-reroll-btn">Reroll</button>
               </div>
@@ -262,9 +258,7 @@
           <div class="col s4">
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 2</span>
-              <div class="card-content">
-                <img id="colour2-display">
-              </div>
+              <div class="card-content colour2-content"></div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour2-reroll-btn">Reroll</button>
               </div>
@@ -274,9 +268,7 @@
           <div class="col s4">
             <div class="card light-blue lighten-5">
               <span class="card-title">Colour 3</span>
-              <div class="card-content">
-                <img id="colour3-display">
-              </div>
+              <div class="card-content colour3-content"></div>
               <div class="card-action">
                 <button class="waves-effect waves-light btn-small" id="colour3-reroll-btn">Reroll</button>
               </div>
@@ -304,13 +296,12 @@
     <script src="/__/firebase/8.4.2/firebase-app.js"></script>
     <script src="/__/firebase/8.4.2/firebase-auth.js"></script>
     <script src="/__/firebase/8.4.2/firebase-firestore.js"></script>
-    <script src="/__/firebase/8.4.2/firebase-analytics.js"></script>
     <script src="/__/firebase/init.js"></script>
 
     <!--contains firebase config and other functions-->
+    <script src=//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.3.10/seedrandom.min.js></script>
     <script src="scripts/index.js"></script>   
     <script src="scripts/generator.js"></script>
-
 
     <!--script for authentication-->
     <script src="scripts/auth.js"></script>
