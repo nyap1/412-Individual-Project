@@ -174,6 +174,7 @@ subForm.addEventListener('submit', (e) =>{
     document.getElementById('form-display').innerHTML = "";
     //closing the modal
     M.Modal.getInstance(modal).close();
+    M.toast({html: 'Prompt submitted! Thank you!'});
     
   } else { //for when no radio button is selected.
     document.getElementById('form-display').innerHTML = "please select a prompt type.";
